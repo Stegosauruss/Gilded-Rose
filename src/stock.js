@@ -7,7 +7,12 @@ class Stock {
 
   check(item) {
     this.decreaseSellIn(item)
-    this.typeCheck(item)
+    if(this.isConjured(item)) {
+      this.typeCheck(item)
+      this.typeCheck(item)
+    } else {
+      this.typeCheck(item)
+    }
   }
 
   decreaseSellIn(item) {
@@ -19,20 +24,17 @@ class Stock {
       this.updateQuality.brie(item)
     } else if (this.isTicket(item)) {
       this.updateQuality.ticket(item)
-    } else if (this.isConjured(item)) {
-      this.updateQuality.default(item)
-      this.updateQuality.default(item)
     } else {
       this.updateQuality.default(item)
     }
   }
 
   isTicket(item) {
-    return item.name == 'Backstage passes to a TAFKAL80ETC concert'
+    return item.name.includes('Backstage passes to a TAFKAL80ETC concert')
   }
 
   isBrie(item) {
-    return item.name == 'Aged Brie'
+    return item.name.includes('Aged Brie')
   }
 
   isConjured(item) {

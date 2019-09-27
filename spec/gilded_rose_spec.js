@@ -117,5 +117,12 @@ describe("Gilded Rose", function() {
       const items = gildedRose.updateStock()
       expect(items[0]).toEqual(new Item("Conjured Rat Tails", -1, 6));
     });
+
+    it("conjured brie updates quantity correctly", function() {
+      const conjuredBrie = new Item("Conjured Aged Brie", 0, 10);
+      const gildedRose = new Shop([conjuredBrie]);
+      const items = gildedRose.updateStock()
+      expect(items[0]).toEqual(new Item("Conjured Aged Brie", -1, 14));
+    });
   })
 });
