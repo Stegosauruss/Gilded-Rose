@@ -1,13 +1,17 @@
-var UpdateQuality = require('./updateQuality')
+var DefaultItem = require('./defaultItem')
+var Brie = require('./brie')
+var Ticket = require('./ticket')
 
 class Stock {
-  constructor(updateQuality = new UpdateQuality) {
-    this.updateQuality = updateQuality
+  constructor (defaultItem = new DefaultItem(), brie = new Brie(), ticket = new Ticket()) {
+    this.defaultItem = defaultItem
+    this.brie = brie
+    this.ticket = ticket
   }
 
-  check(item) {
+  check (item) {
     this.decreaseSellIn(item)
-    if(this.isConjured(item)) {
+    if (this.isConjured(item)) {
       this.typeCheck(item)
       this.typeCheck(item)
     } else {
@@ -15,29 +19,29 @@ class Stock {
     }
   }
 
-  decreaseSellIn(item) {
-    item.sellIn = item.sellIn - 1;
+  decreaseSellIn (item) {
+    item.sellIn = item.sellIn - 1
   }
 
-  typeCheck(item) {
+  typeCheck (item) {
     if (this.isBrie(item)) {
-      this.updateQuality.brie(item)
+      this.brie.updateQuality(item)
     } else if (this.isTicket(item)) {
-      this.updateQuality.ticket(item)
+      this.ticket.updateQuality(item)
     } else {
-      this.updateQuality.default(item)
+      this.defaultItem.updateQuality(item)
     }
   }
 
-  isTicket(item) {
+  isTicket (item) {
     return item.name.includes('Backstage passes to a TAFKAL80ETC concert')
   }
 
-  isBrie(item) {
+  isBrie (item) {
     return item.name.includes('Aged Brie')
   }
 
-  isConjured(item) {
+  isConjured (item) {
     return item.name.includes('Conjured')
   }
 }
