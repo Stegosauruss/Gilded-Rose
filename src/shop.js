@@ -17,7 +17,7 @@ class Shop {
   }
 
   isSulfuras (item) {
-    return item.name == 'Sulfuras, Hand of Ragnaros'
+    return item.name.includes('Sulfuras, Hand of Ragnaros')
   }
 }
 
