@@ -1,10 +1,10 @@
-var DefaultItem = require('./defaultItem')
+var StandardItem = require('./standardItem')
 var Brie = require('./brie')
 var Ticket = require('./ticket')
 
 class Stock {
-  constructor (defaultItem = new DefaultItem(), brie = new Brie(), ticket = new Ticket()) {
-    this.defaultItem = defaultItem
+  constructor (standardItem = new StandardItem(), brie = new Brie(), ticket = new Ticket()) {
+    this.standardItem = standardItem
     this.brie = brie
     this.ticket = ticket
   }
@@ -29,7 +29,7 @@ class Stock {
     } else if (this.isTicket(item)) {
       this.ticket.updateQuality(item)
     } else {
-      this.defaultItem.updateQuality(item)
+      this.standardItem.updateQuality(item)
     }
   }
 

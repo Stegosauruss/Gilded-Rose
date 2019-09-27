@@ -1,8 +1,6 @@
-class Ticket {
-  sellByPassed (item) {
-    return item.sellIn < 0
-  }
+var PremiumItem = require('./premiumItem')
 
+class Ticket extends PremiumItem {
   updateQuality (item) {
     if (this.sellByPassed(item)) {
       item.quality = 0
@@ -13,16 +11,6 @@ class Ticket {
     } else {
       this.increaseQuality(item)
     }
-  }
-
-  increaseQuality (item, value = 1) {
-    if (this.maxQuality(item, value)) { return item.quality = 50 }
-
-    item.quality += value
-  }
-
-  maxQuality (item, value) {
-    return item.quality + value >= 50
   }
 }
 
